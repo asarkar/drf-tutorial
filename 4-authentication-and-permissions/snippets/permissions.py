@@ -7,7 +7,8 @@ from .models import Snippet
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
-    Custom permission to only allow owners of an object to edit it.
+    Custom permission to make all code snippets to be visible to anyone,
+    but only allow owner of an object to edit it.
     """
 
     def has_object_permission(self, request: Request, view: View, obj: Snippet) -> bool:

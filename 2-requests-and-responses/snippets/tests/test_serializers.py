@@ -2,8 +2,8 @@ from typing import Any
 
 from django.test import TestCase
 
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from ..models import Snippet
+from ..serializers import SnippetSerializer
 
 
 class SnippetSerializerTests(TestCase):

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from snippets.models import Snippet
+from ..models import Snippet
 
 
 class SnippetModelTests(TestCase):

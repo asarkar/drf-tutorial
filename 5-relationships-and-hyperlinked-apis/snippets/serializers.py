@@ -18,6 +18,8 @@ from .models import Snippet
 class SnippetSerializer(serializers.HyperlinkedModelSerializer[Snippet]):
     # We could have also used CharField(read_only=True) instead of ReadOnlyField
     owner = serializers.ReadOnlyField(source="owner.username")
+    # https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield
+    # URL of this object
     highlight = serializers.HyperlinkedIdentityField(view_name="snippet-highlight", format="html")
 
     class Meta:
@@ -36,6 +38,8 @@ class SnippetSerializer(serializers.HyperlinkedModelSerializer[Snippet]):
 
 
 class UserSerializer(serializers.ModelSerializer[User]):
+    # https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedrelatedfield
+    # URL(s) of related object(s)
     snippets: serializers.HyperlinkedRelatedField[Snippet] = serializers.HyperlinkedRelatedField(
         many=True, view_name="snippet-detail", read_only=True
     )

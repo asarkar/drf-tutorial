@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 
-from snippets.models import Snippet
+from ..models import Snippet
 
 
 class SnippetViewTests(TestCase):

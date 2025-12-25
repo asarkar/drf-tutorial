@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from .models import Snippet
+from .serializers import SnippetSerializer
 
 
 @api_view(["GET", "POST"])

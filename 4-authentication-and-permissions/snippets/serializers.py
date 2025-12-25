@@ -5,7 +5,9 @@ from .models import Snippet
 
 
 class SnippetSerializer(serializers.ModelSerializer[Snippet]):
-    # We could have also used CharField(read_only=True) instead of ReadOnlyField
+    # We could have also used `CharField(read_only=True)` instead of `ReadOnlyField`.
+    # `owner` is a foreign key to `User`; the actual assignment of `owner` is usually
+    # done in the view, e.g.:. `serializer.save(owner=self.request.user)`
     owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
@@ -14,7 +16,10 @@ class SnippetSerializer(serializers.ModelSerializer[Snippet]):
 
 
 class UserSerializer(serializers.ModelSerializer[User]):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+    # https://www.django-rest-framework.org/api-guide/relations/#primarykeyrelatedfield
+    snippets: serializers.PrimaryKeyRelatedField[Snippet] = serializers.PrimaryKeyRelatedField(
+        many=True, read_only=True
+    )
 
     class Meta:
         model = User

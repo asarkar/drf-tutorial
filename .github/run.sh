@@ -36,6 +36,24 @@ base_dir="${1:-$root_dir}"
 default_color=$(tput -Txterm-256color sgr0)
 green=$(tput -Txterm-256color setaf 2)
 
+boxed_print() {
+    local text="$1"
+    local padding=1
+
+    # pad text, `%*s` means the width is supplied as an argument
+    local padded_text
+    padded_text="$(printf '%*s%s%*s' "$padding" '' "$text" "$padding" '')"
+
+    # count the number of ASCII characters
+    local len=${#padded_text}
+    local border
+    border=$(printf '%*s' "$len" '' | tr ' ' '-')
+
+    printf "\n+%s+\n" "$border"
+    printf "|%b%s%b|\n" "$green" "$padded_text" "$default_color"
+    printf "+%s+\n" "$border"
+}
+
 while IFS='' read -r -d '' manage; do
   # `project_root_dir` contains the `manage.py` file
   project_root_dir=${manage%/*}
@@ -44,7 +62,7 @@ while IFS='' read -r -d '' manage; do
   project_dir=${settings%/*}
   project_dir_name="${project_dir##*/}"
 
-  printf "%bProject root: %s%b\n" "$green" "${project_root_dir##*/}" "$default_color"
+  boxed_print "Project root: ${project_root_dir##*/}"
 
 	if (( no_test == 0 )); then
     uv run --directory "$project_root_dir" manage.py test

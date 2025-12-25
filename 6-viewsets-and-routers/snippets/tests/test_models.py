@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 
-from snippets.models import Snippet
+from ..models import Snippet
 
 
 class SnippetModelTests(TestCase):

@@ -3,8 +3,8 @@ from typing import Any
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
 
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer, UserSerializer
+from ..models import Snippet
+from ..serializers import SnippetSerializer, UserSerializer
 
 
 class SnippetSerializerTests(TestCase):

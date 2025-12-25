@@ -19,38 +19,38 @@ Each chapter of the tutorial is implemented in its own directory, allowing you t
 
 ### Snippets API
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/snippets/` | List all snippets |
-| GET | `/snippets.json` | List all snippets (JSON) |
-| GET | `/snippets.api` | List all snippets (Browsable API) |
-| POST | `/snippets/` | Create a new snippet |
-| GET | `/snippets/{id}/` | Retrieve a snippet |
-| GET | `/snippets/{id}.json` | Retrieve a snippet (JSON) |
-| GET | `/snippets/{id}.api` | Retrieve a snippet (Browsable API) |
-| PUT | `/snippets/{id}/` | Update a snippet |
-| PATCH | `/snippets/{id}/` | Partial update a snippet |
-| DELETE | `/snippets/{id}/` | Delete a snippet |
-| GET | `/snippets/{id}/highlight/` | Get highlighted HTML (chapters 5-6) |
+| Method | Endpoint                    | Description                        |
+|--------|-----------------------------|------------------------------------|
+| GET    | `/snippets/`                | List all snippets                  |
+| GET    | `/snippets.json`            | List all snippets (JSON)           |
+| GET    | `/snippets.api`             | List all snippets (Browsable API)  |
+| POST   | `/snippets/`                | Create a new snippet               |
+| GET    | `/snippets/{id}/`           | Retrieve a snippet                 |
+| GET    | `/snippets/{id}.json`       | Retrieve a snippet (JSON)          |
+| GET    | `/snippets/{id}.api`        | Retrieve a snippet (Browsable API) |
+| PUT    | `/snippets/{id}/`           | Update a snippet                   |
+| PATCH  | `/snippets/{id}/`           | Partial update a snippet           |
+| DELETE | `/snippets/{id}/`           | Delete a snippet                   |
+| GET    | `/snippets/{id}/highlight/` | Get highlighted HTML               |
 
-### Users API (chapters 4-6)
+### Users API
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/users/` | List all users |
-| GET | `/users.json` | List all users (JSON) |
-| GET | `/users.api` | List all users (Browsable API) |
-| GET | `/users/{id}/` | Retrieve a user |
-| GET | `/users/{id}.json` | Retrieve a user (JSON) |
-| GET | `/users/{id}.api` | Retrieve a user (Browsable API) |
+| Method | Endpoint           | Description                     |
+|--------|--------------------|---------------------------------|
+| GET    | `/users/`          | List all users                  |
+| GET    | `/users.json`      | List all users (JSON)           |
+| GET    | `/users.api`       | List all users (Browsable API)  |
+| GET    | `/users/{id}/`     | Retrieve a user                 |
+| GET    | `/users/{id}.json` | Retrieve a user (JSON)          |
+| GET    | `/users/{id}.api`  | Retrieve a user (Browsable API) |
 
 ### Other Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | API root with hyperlinks (chapters 5-6) |
-| GET | `/.api` | API root (Browsable API) |
-| GET | `/api-auth/login/` | Browsable API login |
+| Method | Endpoint           | Description              |
+|--------|--------------------|--------------------------|
+| GET    | `/`                | API root with hyperlinks |
+| GET    | `/.api`            | API root (Browsable API) |
+| GET    | `/api-auth/login/` | Browsable API login      |
 
 ## Technologies
 
@@ -58,7 +58,7 @@ Each chapter of the tutorial is implemented in its own directory, allowing you t
 - **Django REST Framework** - REST API toolkit
 - **Pygments** - Code syntax highlighting
 - **uv** - Python package and project manager
-- **ruff** - Linting
+- **ruff, mypy** - Linting
 
 ## Development
 
@@ -76,10 +76,10 @@ source .venv/bin/activate
 
 ```bash
 # Run migrations
-uv run --directory <chapter>/ manage.py migrate
+uv run --directory <chapter> manage.py migrate
 
 # Start development server
-uv run --directory <chapter>/ manage.py runserver
+uv run --directory <chapter> manage.py runserver
 ```
 
 Example:
@@ -92,13 +92,14 @@ uv run --directory 1-serialization manage.py runserver
 
 ```bash
 # Run tests for a specific chapter
-uv run --directory <chapter>/ manage.py test
+uv run --directory <chapter> manage.py test
 
 # Or use the CI script
-./.github/run.sh <chapter>/
+./.github/run.sh <chapter>
 ```
 
 Example:
 ```bash
 uv run --directory 4-authentication-and-permissions manage.py test
+./.github/run.sh 4-authentication-and-permissions
 ```

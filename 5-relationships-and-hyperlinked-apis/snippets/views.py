@@ -52,6 +52,9 @@ def api_root(request: Request, format: str | None = None) -> Response:
 
 class SnippetHighlight(generics.GenericAPIView[Snippet]):
     queryset = Snippet.objects.all()
+    # There are two styles of HTML renderer provided by DRF, one for dealing with
+    # HTML rendered using templates, the other for dealing with pre-rendered HTML.
+    # We're using the second one here.
     renderer_classes = [renderers.StaticHTMLRenderer]
 
     def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
